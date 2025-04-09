@@ -11,9 +11,15 @@ class DashboardActivity : ComponentActivity() {
         setContentView(R.layout.activity_dashboard)
 
         val btnCrear: Button = findViewById(R.id.btnCrear)
+        val btnVerProductos: Button = findViewById(R.id.btnVerProductos)
 
         btnCrear.setOnClickListener {
             startActivity(Intent(this, CrearProductoActivity::class.java))
+        }
+
+        btnVerProductos.setOnClickListener {
+            val intent = Intent(this, MostrarProductoActivity::class.java)
+            startActivity(intent)
         }
     }
 }

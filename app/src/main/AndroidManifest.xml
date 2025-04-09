@@ -43,5 +43,10 @@
             android:exported="true"
             android:label="Crear Producto" />
 
+        <activity
+            android:name=".MostrarProductoActivity"
+            android:exported="true"
+            android:label="Productos" />
+
     </application>
 </manifest>
