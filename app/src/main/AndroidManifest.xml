@@ -14,8 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Tiendita"
         tools:targetApi="31">
+
 
         <!-- LoginActivity será la primera pantalla -->
         <activity
