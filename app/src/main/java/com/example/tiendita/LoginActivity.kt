@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,17 +32,30 @@ class LoginActivity : ComponentActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 val loginRequest = LoginRequest(email, password)
 
-                val call = RetrofitClient.instance.login(loginRequest)
+                // Llamar a RetrofitClient pasando el contexto para obtener la instancia correcta de ApiService
+                val call = RetrofitClient.getInstance(this).login(loginRequest)
                 call.enqueue(object : Callback<LoginResponse> {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                         if (response.isSuccessful) {
                             val loginResponse = response.body()
-                            Toast.makeText(this@LoginActivity, "Bienvenido ${loginResponse?.user?.nombre}", Toast.LENGTH_LONG).show()
 
-                            // Navegar al MainActivity
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            // Verificar si la respuesta contiene el token
+                            val token = loginResponse?.token
+                            if (token != null) {
+                                // Guardar el token en SharedPreferences
+                                val sharedPreferences = getSharedPreferences("session", MODE_PRIVATE)
+                                sharedPreferences.edit().putString("token", token).apply()
+
+                                // Mostrar mensaje de bienvenida
+                                Toast.makeText(this@LoginActivity, "Bienvenido ${loginResponse.user.nombre}", Toast.LENGTH_LONG).show()
+
+                                // Navegar al Dashboard
+                                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                                startActivity(intent)
+                                finish() // Cerrar LoginActivity para que no regrese
+                            } else {
+                                Toast.makeText(this@LoginActivity, "Token no recibido", Toast.LENGTH_SHORT).show()
+                            }
                         } else {
                             Toast.makeText(this@LoginActivity, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                         }
@@ -60,4 +72,3 @@ class LoginActivity : ComponentActivity() {
         }
     }
 }
-

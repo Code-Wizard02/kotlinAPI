@@ -33,10 +33,15 @@
 
         <!-- MainActivity ya no inicia automáticamente -->
         <activity
-            android:name=".MainActivity"
+            android:name=".DashboardActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Tiendita" />
+
+        <activity
+            android:name=".CrearProductoActivity"
+            android:exported="true"
+            android:label="Crear Producto" />
 
     </application>
 </manifest>
