@@ -29,9 +29,8 @@ interface ApiService {
     @PATCH("api/products/{id}")
     fun actualizarProducto(@Path("id") id: String, @Body producto: ProductRequest): Call<Product>
 
-
     @DELETE("api/products/{id}")
-    fun eliminarProducto(@Path("id") id: String): Call<Product>
+    fun eliminarProducto(@Path("id") id: String): Call<DeleteResponse>
 
 
 

@@ -55,6 +55,9 @@
             android:exported="true"
             android:label="Actualizar Producto" />
 
+        <activity android:name=".EliminarProductoActivity"
+            android:exported="true"
+            android:label="Eliminar Producto" />
 
     </application>
 </manifest>
