@@ -23,8 +23,12 @@ interface ApiService {
     @POST("api/products")
     fun crearProducto(@Body product: ProductRequest): Call<Product>
 
+    @GET("api/products/{id}")
+    fun getProductoPorId(@Path("id") id: String): Call<Product>
+
     @PATCH("api/products/{id}")
-    fun actualizarProducto(@Path("id") id: String, @Body producto: Map<String, Any>): Call<Product>
+    fun actualizarProducto(@Path("id") id: String, @Body producto: ProductRequest): Call<Product>
+
 
     @DELETE("api/products/{id}")
     fun eliminarProducto(@Path("id") id: String): Call<Product>

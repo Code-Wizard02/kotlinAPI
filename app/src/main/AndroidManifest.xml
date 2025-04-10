@@ -48,5 +48,13 @@
             android:exported="true"
             android:label="Productos" />
 
+        <activity android:name=".FormularioActualizarProductoActivity"
+            android:exported="true" />
+
+        <activity android:name=".ActualizarListaProductosActivity"
+            android:exported="true"
+            android:label="Actualizar Producto" />
+
+
     </application>
 </manifest>

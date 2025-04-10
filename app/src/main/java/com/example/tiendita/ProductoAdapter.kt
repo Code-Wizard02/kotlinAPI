@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProductoAdapter(private val productos: List<Product>) :
-    RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
+class ProductoAdapter(
+    private val productos: List<Product>,
+    private val onItemClick: (Product) -> Unit
+) : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
 
     class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.tvNombre)
@@ -17,8 +19,7 @@ class ProductoAdapter(private val productos: List<Product>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_producto, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_producto, parent, false)
         return ProductoViewHolder(view)
     }
 
@@ -28,7 +29,12 @@ class ProductoAdapter(private val productos: List<Product>) :
         holder.descripcion.text = producto.descripcion
         holder.precio.text = "Precio: \$${producto.precio}"
         holder.stock.text = "Stock: ${producto.stock}"
+
+        holder.itemView.setOnClickListener {
+            onItemClick(producto)
+        }
     }
 
     override fun getItemCount(): Int = productos.size
 }
+

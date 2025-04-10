@@ -1,6 +1,7 @@
 package com.example.tiendita
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Product(
     @SerializedName("_id") val id: String,
@@ -8,5 +9,6 @@ data class Product(
     val descripcion: String,
     val precio: Int,
     val stock: Int
-)
+) : Serializable
+
 

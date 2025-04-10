@@ -30,7 +30,8 @@ class MostrarProductoActivity : ComponentActivity() {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 if (response.isSuccessful && response.body() != null) {
                     val productos = response.body()!!
-                    recyclerProductos.adapter = ProductoAdapter(productos)
+                    recyclerProductos.adapter = ProductoAdapter(productos) { producto ->
+                    }
                 } else {
                     Toast.makeText(this@MostrarProductoActivity, "Error al cargar productos", Toast.LENGTH_SHORT).show()
                 }

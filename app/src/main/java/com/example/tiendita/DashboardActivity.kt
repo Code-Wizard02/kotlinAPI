@@ -12,13 +12,18 @@ class DashboardActivity : ComponentActivity() {
 
         val btnCrear: Button = findViewById(R.id.btnCrear)
         val btnVerProductos: Button = findViewById(R.id.btnVerProductos)
-
+        val btnActualizar = findViewById<Button>(R.id.btnActualizar)
         btnCrear.setOnClickListener {
             startActivity(Intent(this, CrearProductoActivity::class.java))
         }
 
         btnVerProductos.setOnClickListener {
             val intent = Intent(this, MostrarProductoActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnActualizar.setOnClickListener {
+            val intent = Intent(this, ActualizarListaProductosActivity::class.java)
             startActivity(intent)
         }
     }
