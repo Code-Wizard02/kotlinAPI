@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.produto
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.data
 
 import android.content.Context
 import okhttp3.OkHttpClient
@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://192.168.1.74:3000/"
+    private const val BASE_URL = "http://192.168.1.65:3000/"
 
     fun getInstance(context: Context): ApiService {
         val sharedPreferences = context.getSharedPreferences("session", Context.MODE_PRIVATE)

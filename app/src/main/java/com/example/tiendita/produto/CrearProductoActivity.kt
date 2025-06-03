@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.produto
 
 import android.os.Bundle
 import android.widget.*
@@ -6,6 +6,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import androidx.activity.ComponentActivity
+import com.example.tiendita.R
+import com.example.tiendita.data.RetrofitClient
 
 class CrearProductoActivity : ComponentActivity() {
 

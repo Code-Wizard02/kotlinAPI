@@ -1,10 +1,12 @@
-package com.example.tiendita
+package com.example.tiendita.produto
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tiendita.R
+import com.example.tiendita.data.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/fondo_login"
-    tools:context=".auth.LoginActivity">
+    tools:context=".auth.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,21 +18,37 @@
         android:elevation="10dp"
         android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/loginText"
+        <EditText
+            android:id="@+id/editTextNombre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Iniciar sesión"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="@color/login" />
+            android:layout_height="50dp"
+            android:hint="Nombre"
+            android:layout_marginTop="40dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_edittext"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:drawablePadding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextApellido"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Apellido"
+            android:layout_marginTop="40dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_edittext"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:drawablePadding="8dp" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Correo"
+            android:hint="Correo electrónico"
             android:layout_marginTop="40dp"
             android:padding="8dp"
             android:background="@drawable/custom_edittext"
@@ -55,19 +71,19 @@
             android:drawablePadding="8dp" />
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:text="Iniciar sesión"
+            android:text="Registrarse"
             android:textSize="18sp"
             android:backgroundTint="@color/login" />
 
         <TextView
-            android:id="@+id/textViewRegister"
+            android:id="@+id/textViewLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿No tienes cuenta? Regístrate aquí"
+            android:text="¿Ya tienes cuenta? Inicia sesión aquí"
             android:textColor="@android:color/holo_blue_dark"
             android:layout_marginTop="24dp"
             android:textSize="16sp"

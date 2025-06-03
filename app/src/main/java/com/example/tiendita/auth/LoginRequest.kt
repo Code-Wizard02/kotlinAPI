@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.auth
 
 data class LoginRequest(
     val email: String,

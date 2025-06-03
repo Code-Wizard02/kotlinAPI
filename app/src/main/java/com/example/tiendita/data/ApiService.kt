@@ -1,16 +1,18 @@
-package com.example.tiendita
+package com.example.tiendita.data
 
+import com.example.tiendita.produto.DeleteResponse
+import com.example.tiendita.auth.LoginRequest
+import com.example.tiendita.auth.LoginResponse
+import com.example.tiendita.auth.RegisterRequest
 import retrofit2.Call
 import retrofit2.http.GET
-import com.example.tiendita.Product
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.tiendita.produto.Product
+import com.example.tiendita.produto.ProductRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.PATCH
-import retrofit2.http.Query
 
 interface ApiService {
 
@@ -32,4 +34,8 @@ interface ApiService {
     @DELETE("api" +
             "/products/{id}")
     fun eliminarProducto(@Path("id") id: String): Call<DeleteResponse>
+
+    @POST("api/auth/register")
+    fun registrarUsuario(@Body usuario: RegisterRequest): Call<Void>
+
 }

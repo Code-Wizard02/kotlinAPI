@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.produto
 
 data class ProductResponse(
     val message: String?,

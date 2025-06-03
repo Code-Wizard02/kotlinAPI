@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
+import com.example.tiendita.produto.ActualizarListaProductosActivity
+import com.example.tiendita.produto.CrearProductoActivity
+import com.example.tiendita.produto.EliminarProductoActivity
+import com.example.tiendita.produto.MostrarProductoActivity
 
 class DashboardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.tiendita
+package com.example.tiendita.produto
 
 data class ProductRequest(
     val nombre: String,

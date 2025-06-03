@@ -1,12 +1,16 @@
-package com.example.tiendita
+package com.example.tiendita.auth
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.tiendita.DashboardActivity
+import com.example.tiendita.R
+import com.example.tiendita.data.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,6 +73,13 @@ class LoginActivity : ComponentActivity() {
             } else {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        val textViewRegister = findViewById<TextView>(R.id.textViewRegister)
+        textViewRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish() // Opcional
         }
     }
 }
