@@ -53,8 +53,15 @@ class LoginActivity : ComponentActivity() {
                                 // Mostrar mensaje de bienvenida
                                 Toast.makeText(this@LoginActivity, "Bienvenido ${loginResponse.user.nombre}", Toast.LENGTH_LONG).show()
 
-                                // Navegar al Dashboard
-                                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                                val rol = loginResponse.user.rol
+                                val intent = when (rol) {
+                                    0 -> Intent(this@LoginActivity, com.example.tiendita.cliente.DashboardClienteActivity::class.java)
+                                    1 -> Intent(this@LoginActivity, com.example.tiendita.vendedor.DashboardVendedorActivity::class.java)
+                                    else -> {
+                                        Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                                        return
+                                    }
+                                }
                                 startActivity(intent)
                                 finish() // Cerrar LoginActivity para que no regrese
                             } else {

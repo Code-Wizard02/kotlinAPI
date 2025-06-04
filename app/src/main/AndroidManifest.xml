@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".carrito.CarritoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vendedor.DashboardVendedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cliente.DashboardClienteActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.Tiendita" />

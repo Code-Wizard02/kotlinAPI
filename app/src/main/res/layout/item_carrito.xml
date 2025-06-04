@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del producto"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cantidad: 1"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtPrecioUnitario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio: $0.00"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subtotal: $0.00"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+</LinearLayout>

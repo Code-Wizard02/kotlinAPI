@@ -10,5 +10,3 @@ data class Product(
     val precio: Int,
     val stock: Int
 ) : Serializable
-
-
