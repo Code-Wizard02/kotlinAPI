@@ -1,5 +1,6 @@
 package com.example.tiendita.carrito
 
+import CarritoAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -36,9 +37,10 @@ class CarritoActivity : ComponentActivity() {
             txtTotal.text = "Total: $$total"
         }
 
-        val adapter = CarritoAdapter(carrito) { _, _ ->
+        val adapter = CarritoAdapter(this, carrito) { _, _ ->
             actualizarTotal()
         }
+
         recyclerCarrito.adapter = adapter
 
         actualizarTotal()

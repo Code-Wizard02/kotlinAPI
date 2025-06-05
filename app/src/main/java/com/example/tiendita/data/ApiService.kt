@@ -4,6 +4,9 @@ import com.example.tiendita.produto.DeleteResponse
 import com.example.tiendita.auth.LoginRequest
 import com.example.tiendita.auth.LoginResponse
 import com.example.tiendita.auth.RegisterRequest
+import com.example.tiendita.carrito.AddToCartRequest
+import com.example.tiendita.carrito.CartResponse
+import com.example.tiendita.carrito.MessageResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import com.example.tiendita.produto.Product
@@ -38,4 +41,12 @@ interface ApiService {
     @POST("api/auth/register")
     fun registrarUsuario(@Body usuario: RegisterRequest): Call<Void>
 
+    @GET("api/cart")
+    fun obtenerCarrito(): Call<CartResponse>
+
+    @POST("api/cart/add")
+    fun agregarProductoAlCarrito(@Body request: AddToCartRequest): Call<MessageResponse>
+
+    @DELETE("api/cart/{productId}")
+    fun eliminarProductoDelCarrito(@Path("productId") productId: String): Call<MessageResponse>
 }
