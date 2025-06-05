@@ -10,6 +10,11 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tiendita.R
+import com.example.tiendita.data.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class CarritoActivity : ComponentActivity() {
 
@@ -46,8 +51,25 @@ class CarritoActivity : ComponentActivity() {
         actualizarTotal()
 
         btnPagar.setOnClickListener {
-            Toast.makeText(this, "Implementar proceso de pago...", Toast.LENGTH_SHORT).show()
+            val api = RetrofitClient.getInstance(this)
+
+            api.crearOrdenPayPal().enqueue(object : Callback<PayPalResponse> {
+                override fun onResponse(call: Call<PayPalResponse>, response: Response<PayPalResponse>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val url = response.body()!!.approveUrl
+                        val browserIntent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url))
+                        startActivity(browserIntent)
+                    } else {
+                        Toast.makeText(this@CarritoActivity, "Error al crear orden", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<PayPalResponse>, t: Throwable) {
+                    Toast.makeText(this@CarritoActivity, "Error de red: ${t.message}", Toast.LENGTH_LONG).show()
+                }
+            })
         }
+
 
         recyclerCarrito.adapter = adapter
     }

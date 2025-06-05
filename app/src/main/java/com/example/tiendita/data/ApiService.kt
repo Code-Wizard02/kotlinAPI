@@ -7,6 +7,7 @@ import com.example.tiendita.auth.RegisterRequest
 import com.example.tiendita.carrito.AddToCartRequest
 import com.example.tiendita.carrito.CartResponse
 import com.example.tiendita.carrito.MessageResponse
+import com.example.tiendita.carrito.PayPalResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import com.example.tiendita.produto.Product
@@ -49,4 +50,7 @@ interface ApiService {
 
     @DELETE("api/cart/{productId}")
     fun eliminarProductoDelCarrito(@Path("productId") productId: String): Call<MessageResponse>
+
+    @POST("api/paypal/create-order")
+    fun crearOrdenPayPal(): Call<PayPalResponse>
 }
