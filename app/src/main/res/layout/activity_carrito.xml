@@ -40,9 +40,13 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btnPagar"
+            android:id="@+id/btnContinuar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pagar" />
+            android:text="Agregar dirección"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_background" />
+
+
     </LinearLayout>
 </LinearLayout>

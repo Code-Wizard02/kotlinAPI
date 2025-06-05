@@ -64,6 +64,10 @@
             android:name=".produto.EliminarProductoActivity"
             android:exported="true"
             android:label="Eliminar Producto" />
+        <activity
+            android:name=".carrito.ShippingFormActivity"
+            android:exported="true"
+            android:label="Eliminar Producto" />
     </application>
 
 </manifest>

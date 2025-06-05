@@ -31,8 +31,7 @@ class CarritoActivity : ComponentActivity() {
 
 
         val txtTotal = findViewById<TextView>(R.id.txtTotal)
-        val btnPagar = findViewById<Button>(R.id.btnPagar)
-
+        val btnContinuar = findViewById<Button>(R.id.btnContinuar)
         fun calcularTotal(): Int {
             return carrito.sumOf { it.producto.precio * it.cantidad }
         }
@@ -50,28 +49,19 @@ class CarritoActivity : ComponentActivity() {
 
         actualizarTotal()
 
-        btnPagar.setOnClickListener {
-            val api = RetrofitClient.getInstance(this)
+        recyclerCarrito.adapter = adapter
 
-            api.crearOrdenPayPal().enqueue(object : Callback<PayPalResponse> {
-                override fun onResponse(call: Call<PayPalResponse>, response: Response<PayPalResponse>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val url = response.body()!!.approveUrl
-                        val browserIntent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url))
-                        startActivity(browserIntent)
-                    } else {
-                        Toast.makeText(this@CarritoActivity, "Error al crear orden", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<PayPalResponse>, t: Throwable) {
-                    Toast.makeText(this@CarritoActivity, "Error de red: ${t.message}", Toast.LENGTH_LONG).show()
-                }
-            })
+        btnContinuar.setOnClickListener {
+            if (carrito.isEmpty()) {
+                Toast.makeText(this, "Tu carrito está vacío", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ShippingFormActivity::class.java)
+                intent.putExtra("carrito", carrito)
+                startActivity(intent)
+            }
         }
 
 
-        recyclerCarrito.adapter = adapter
     }
 
     override fun onBackPressed() {
