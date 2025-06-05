@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.tiendita.DashboardActivity
 import com.example.tiendita.R
+import com.example.tiendita.cliente.DashboardClienteActivity
 import com.example.tiendita.data.RetrofitClient
+import com.example.tiendita.vendedor.DashboardVendedorActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,13 +57,14 @@ class LoginActivity : ComponentActivity() {
 
                                 val rol = loginResponse.user.rol
                                 val intent = when (rol) {
-                                    0 -> Intent(this@LoginActivity, com.example.tiendita.cliente.DashboardClienteActivity::class.java)
-                                    1 -> Intent(this@LoginActivity, com.example.tiendita.vendedor.DashboardVendedorActivity::class.java)
+                                    "comprador" -> Intent(this@LoginActivity, DashboardClienteActivity::class.java)
+                                    "vendedor" -> Intent(this@LoginActivity, DashboardVendedorActivity::class.java)
                                     else -> {
                                         Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
                                         return
                                     }
                                 }
+
                                 startActivity(intent)
                                 finish() // Cerrar LoginActivity para que no regrese
                             } else {

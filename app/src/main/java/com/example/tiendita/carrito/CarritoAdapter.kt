@@ -1,51 +1,68 @@
 package com.example.tiendita.carrito
 
-import android.graphics.Typeface
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tiendita.R
 
-class CarritoAdapter(private val carrito: List<CarritoItem>) :
-    RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
+class CarritoAdapter(
+    private val items: MutableList<CarritoItem>,
+    private val onCantidadChanged: (pos: Int, nuevaCantidad: Int) -> Unit
+) : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
 
-    inner class CarritoViewHolder(val layout: LinearLayout) : RecyclerView.ViewHolder(layout) {
-        val nombre: TextView = layout.getChildAt(0) as TextView
-        val detalle: TextView = layout.getChildAt(1) as TextView
+    inner class CarritoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val nombre: TextView = view.findViewById(R.id.txtNombre)
+        val cantidad: TextView = view.findViewById(R.id.txtCantidad)
+        val precio: TextView = view.findViewById(R.id.txtPrecio)
+        val subtotal: TextView = view.findViewById(R.id.txtSubtotal)
+        val btnAgregar: ImageButton = view.findViewById(R.id.btnAgregar)
+        val btnQuitar: ImageButton = view.findViewById(R.id.btnQuitar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoViewHolder {
-        val context = parent.context
-
-        val layout = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(16, 16, 16, 16)
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-
-        val nombre = TextView(context).apply {
-            textSize = 16f
-            setTypeface(null, Typeface.BOLD)
-        }
-
-        val detalle = TextView(context).apply {
-            textSize = 14f
-        }
-
-        layout.addView(nombre)
-        layout.addView(detalle)
-
-        return CarritoViewHolder(layout)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_carrito, parent, false)
+        return CarritoViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: CarritoViewHolder, position: Int) {
-        val item = carrito[position]
+        val item = items[position]
+
         holder.nombre.text = item.producto.nombre
-        holder.detalle.text = "Cantidad: ${item.cantidad} x $${"%.2f".format(item.producto.precio)}"
+        holder.precio.text = "Precio: $${item.producto.precio}"
+        holder.cantidad.text = item.cantidad.toString()
+        val subtotal = item.cantidad * item.producto.precio
+        holder.subtotal.text = "Subtotal: $${subtotal}"
+
+        // Botón agregar
+        holder.btnAgregar.setOnClickListener {
+            if (item.cantidad < item.producto.stock) {
+                item.cantidad++
+                notifyItemChanged(position)
+                onCantidadChanged(position, item.cantidad)
+            } else {
+                Toast.makeText(holder.itemView.context, "No hay más stock disponible", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Botón quitar
+        holder.btnQuitar.setOnClickListener {
+            if (item.cantidad > 1) {
+                item.cantidad--
+                notifyItemChanged(position)
+                onCantidadChanged(position, item.cantidad)
+            } else {
+                // Opcional: eliminar item del carrito si cantidad llega a 0
+                items.removeAt(position)
+                notifyItemRemoved(position)
+                onCantidadChanged(position, 0)
+            }
+        }
     }
 
-    override fun getItemCount(): Int = carrito.size
+    override fun getItemCount(): Int = items.size
 }
