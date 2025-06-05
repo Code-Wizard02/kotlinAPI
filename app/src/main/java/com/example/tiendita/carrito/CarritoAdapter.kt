@@ -40,26 +40,31 @@ class CarritoAdapter(
 
         // Botón agregar
         holder.btnAgregar.setOnClickListener {
-            if (item.cantidad < item.producto.stock) {
-                item.cantidad++
-                notifyItemChanged(position)
-                onCantidadChanged(position, item.cantidad)
-            } else {
-                Toast.makeText(holder.itemView.context, "No hay más stock disponible", Toast.LENGTH_SHORT).show()
+            val pos = holder.bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                val currentItem = items[pos]
+                if (currentItem.cantidad < currentItem.producto.stock) {
+                    currentItem.cantidad++
+                    notifyItemChanged(pos)
+                    onCantidadChanged(pos, currentItem.cantidad)
+                }
             }
         }
 
         // Botón quitar
         holder.btnQuitar.setOnClickListener {
-            if (item.cantidad > 1) {
-                item.cantidad--
-                notifyItemChanged(position)
-                onCantidadChanged(position, item.cantidad)
-            } else {
-                // Opcional: eliminar item del carrito si cantidad llega a 0
-                items.removeAt(position)
-                notifyItemRemoved(position)
-                onCantidadChanged(position, 0)
+            val pos = holder.bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                val currentItem = items[pos]
+                if (currentItem.cantidad > 1) {
+                    currentItem.cantidad--
+                    notifyItemChanged(pos)
+                    onCantidadChanged(pos, currentItem.cantidad)
+                } else {
+                    items.removeAt(pos)
+                    notifyItemRemoved(pos)
+                    onCantidadChanged(pos, 0)
+                }
             }
         }
     }

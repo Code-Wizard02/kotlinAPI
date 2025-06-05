@@ -41,8 +41,8 @@ class DashboardClienteActivity : ComponentActivity() {
 
         btnCarrito.setOnClickListener {
             val intent = Intent(this, CarritoActivity::class.java)
-            intent.putExtra("carrito", ArrayList(carrito)) // CarritoItem debe implementar Serializable
-            startActivity(intent)
+            intent.putExtra("carrito", ArrayList(carrito))
+            startActivityForResult(intent, 1001)
         }
 
         cargarProductos()
@@ -99,6 +99,18 @@ class DashboardClienteActivity : ComponentActivity() {
             badgeCarrito.text = totalItems.toString()
         } else {
             badgeCarrito.visibility = View.GONE
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1001 && resultCode == RESULT_OK) {
+            val carritoActualizado = data?.getSerializableExtra("carritoActualizado") as? ArrayList<CarritoItem>
+            if (carritoActualizado != null) {
+                carrito.clear()
+                carrito.addAll(carritoActualizado)
+                actualizarBadge()
+            }
         }
     }
 }

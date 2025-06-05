@@ -37,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
 
-            val user = RegisterRequest(nombre, apellido, email, password, "vendedor") // rol 0 cliente
+            val user = RegisterRequest(nombre, apellido, email, password, "comprador")
 
             val api = RetrofitClient.getInstance(this)
             api.registrarUsuario(user).enqueue(object : Callback<Void> {
