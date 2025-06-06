@@ -7,7 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "https://express-api-rest-h8xs.onrender.com/"
+//    private const val BASE_URL = "https://express-api-rest-h8xs.onrender.com/"
+    private const val BASE_URL = "http://192.168.0.31:3000/"
 
     fun getInstance(context: Context): ApiService {
         val sharedPreferences = context.getSharedPreferences("session", Context.MODE_PRIVATE)

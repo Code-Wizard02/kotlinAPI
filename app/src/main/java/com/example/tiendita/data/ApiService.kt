@@ -53,4 +53,9 @@ interface ApiService {
 
     @POST("api/paypal/create-order")
     fun crearOrdenPayPal(): Call<PayPalResponse>
+
+    @POST("routes/PayPal/validate-payment")
+    fun validatePayment(@Body request: PaymentValidationRequest): Call<PaymentValidationResponse>
+
+
 }

@@ -7,6 +7,16 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/tvCartEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tu carrito está vacío"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_margin="16dp"/>
+
+    <TextView
         android:id="@+id/txtTituloCarrito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

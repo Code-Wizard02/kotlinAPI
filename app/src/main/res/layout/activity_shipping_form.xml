@@ -124,7 +124,23 @@
                         android:text="Continuar con el pago"
                         android:textColor="@android:color/white"
                         android:background="@drawable/rounded_background" />
+                    <ProgressBar
+                        android:id="@+id/progressBarPayment"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:max="100"
+                        android:visibility="gone" />
 
+                    <TextView
+                        android:id="@+id/tvPaymentStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
